@@ -14,8 +14,6 @@ let richDad = new Book("rich dad poor dad", "jackie chan", 360, false);
 let atomicH = new Book("Atomic habits", "donald trump", 480, true);
 let Baily = new Book("Bailey and Love", "tsunami", 202, false);
 
-myLibrary.unshift(richDad, atomicH, Baily);
-
 // Function to add a book to the library
 function addBookToLibrary(title, author, pages, read) {
   let newBook = new Book(title, author, pages, read);
@@ -25,9 +23,35 @@ function addBookToLibrary(title, author, pages, read) {
 // Select the correct container
 let cardContainer = document.querySelector(".cards-container");
 
-// Function to display books (to be implemented later)
+// Function to display books
 function displayBook() {
-  // Logic for displaying books will go here
+  myLibrary.forEach((book) => {
+    // Create card element
+    let card = document.createElement("div");
+    card.classList.add("card"); // Add a class for styling
+
+    // Create title, author, pages, and button elements
+    let title = document.createElement("p");
+    title.textContent = `Title: ${book.title}`;
+
+    let author = document.createElement("p");
+    author.textContent = `Author: ${book.author}`;
+
+    let pages = document.createElement("p");
+    pages.textContent = `Pages: ${book.pages}`;
+
+    let button = document.createElement("button");
+    button.textContent = book.read;
+
+    // Append the elements to the card
+    card.appendChild(title);
+    card.appendChild(author);
+    card.appendChild(pages);
+    card.appendChild(button);
+
+    // Append the card to the container
+    cardContainer.appendChild(card);
+  });
 }
 
 // get the dialog buttons
@@ -64,4 +88,5 @@ submitButton.addEventListener("click", (e) => {
   document.getElementById("read").checked = false;
 
   addBookDialogue.close();
+  displayBook();
 });
