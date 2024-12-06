@@ -9,36 +9,38 @@
   <body>
     <header>
       <h1>Yarmouk Library</h1>
-      <h4>enrich your knowledge!</h4>
+      <h4>Enrich your knowledge!</h4>
     </header>
-    <div class="content">
-      <!-- add book -->
-      <button class="add-book">add book</button>
+    <main class="content">
+      <!-- Add Book Button -->
+      <button class="add-book">Add Book</button>
 
-      <!-- add the dialogue with form  -->
+      <!-- Modal for Adding Books -->
       <dialog id="addBookDialogue">
-        <div class="card">
-          <form action="">
-            <label for="title">title</label>
-            <input id="title" type="text" />
-            <label for="author">author</label>
-            <input id="author" type="text" />
-            <label for="pages">pages</label>
-            <input id="pages" type="text" />
-            <checkbox id="read">read</checkbox>
-            <button id="submit">submit</button>
-            <button id="cancel">cancel</button>
+        <div class="modal">
+          <form id="addBookForm">
+            <h3>Add a New Book</h3>
+            <label for="title">Title</label>
+            <input id="title" type="text" required />
+            <label for="author">Author</label>
+            <input id="author" type="text" required />
+            <label for="pages">Pages</label>
+            <input id="pages" type="number" required />
+            <div>
+              <label for="read">Read</label>
+              <input id="read" type="checkbox" />
+            </div>
+            <div class="form-buttons">
+              <button id="submit" class="btn primary" type="submit">Submit</button>
+              <button id="cancel" class="btn secondary" type="button">Cancel</button>
+            </div>
           </form>
         </div>
       </dialog>
-      <div class="cards-container">
-        <div class="card">
-          <p id="title">sayed</p>
-          <span id="author">mahmoud</span>
-          <div id="pages">500 pages</div>
-        </div>
-      </div>
-    </div>
+
+      <!-- Books Display -->
+      <div class="cards-container"></div>
+    </main>
     <script src="script.js" defer></script>
   </body>
 </html>
