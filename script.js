@@ -30,9 +30,10 @@ function displayBook() {
   // Logic for displaying books will go here
 }
 
+// get the dialog buttons
 const showDialogButton = document.querySelector(".add-book");
 const addBookDialogue = document.getElementById("addBookDialogue");
-const closeButton = document.getElementById("close");
+const cancelButton = document.getElementById("cancel");
 const submitButton = document.getElementById("submit");
 
 // show dialoge
@@ -46,3 +47,21 @@ cancelButton.addEventListener("click", () => {
 });
 
 // submit form
+submitButton.addEventListener("click", (e) => {
+  e.preventDefault();
+  // Get form data
+  const title = document.getElementById("title").value.trim();
+  const author = document.getElementById("author").value.trim();
+  const pages = document.getElementById("pages").value.trim();
+  const read = document.getElementById("read").checked; // If using a checkbox for read status
+  // add to the Library
+  addBookToLibrary(title, author, pages, read);
+
+  // Clear the form
+  document.getElementById("title").value = "";
+  document.getElementById("author").value = "";
+  document.getElementById("pages").value = "";
+  document.getElementById("read").checked = false;
+
+  addBookDialogue.close();
+});
