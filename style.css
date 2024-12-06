@@ -1,0 +1,19 @@
+* {
+  margin: 0px;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header {
+  background-color: blanchedalmond;
+  text-align: center;
+}
+
+.card {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  height: auto;
+  border-radius: 15px;
+}

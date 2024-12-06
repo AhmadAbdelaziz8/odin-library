@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Library</title>
+  </head>
+  <body>
+    <header>
+      <h1>Yarmouk Library</h1>
+      <h4>enrich your knowledge!</h4>
+    </header>
+    <div class="content">
+      <!-- add book -->
+      <button class="add-book">add book</button>
+
+      <!-- add the dialogue with form  -->
+      <dialog id="addBookDialogue">
+        <div class="card">
+          <form action="">
+            <label for="title">title</label>
+            <input id="title" type="text" />
+            <label for="author">author</label>
+            <input id="author" type="text" />
+            <label for="pages">pages</label>
+            <input id="pages" type="text" />
+            <checkbox id="read">read</checkbox>
+            <button id="submit">submit</button>
+            <button id="cancerl">cancel</button>
+          </form>
+        </div>
+      </dialog>
+      <div class="cards-container">
+        <div class="card">
+          <p id="title">sayed</p>
+          <span id="author">mahmoud</span>
+          <div id="pages">500 pages</div>
+        </div>
+      </div>
+    </div>
+    <script src="script.js" defer></script>
+  </body>
+</html>
