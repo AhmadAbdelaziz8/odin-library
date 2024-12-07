@@ -1,36 +1,36 @@
 // Array to store books
-const myLibrary = [];
+let myLibrary = [];
 
 // Book blueprint
-function Book(title, author, pages, read) {
+function Book(title, author, pages, read, id) {
   this.title = title;
   this.author = author;
   this.pages = pages;
   this.read = read;
+  this.id = id;
 }
 
-// Sample books
-let richDad = new Book("rich dad poor dad", "jackie chan", 360, false);
-let atomicH = new Book("Atomic habits", "donald trump", 480, true);
-let Baily = new Book("Bailey and Love", "tsunami", 202, false);
+// set Identified for each book
+let idCounter = 0;
 
-// Function to add a book to the library
-function addBookToLibrary(title, author, pages, read) {
-  let newBook = new Book(title, author, pages, read);
-  myLibrary.unshift(newBook);
+// Function to toggle the read status of a book
+function toggleReadStatus(id) {
+  const book = myLibrary.find((book) => book.id === id);
+  if (book) {
+    book.read = !book.read; // Toggle the read status
+    displayBook(); // Refresh the display
+  }
 }
 
-// Select the correct container
-let cardContainer = document.querySelector(".cards-container");
-
-// Function to display books
+// Updated displayBook function
 function displayBook() {
+  cardContainer.innerHTML = ""; // Clear the container before adding updated cards
   myLibrary.forEach((book) => {
-    // Create card element
     let card = document.createElement("div");
-    card.classList.add("card"); // Add a class for styling
+    card.classList.add("card");
+    card.setAttribute("data-id", book.id);
 
-    // Create title, author, pages, and button elements
+    // Create title, author, pages elements
     let title = document.createElement("p");
     title.textContent = `Title: ${book.title}`;
 
@@ -40,18 +40,51 @@ function displayBook() {
     let pages = document.createElement("p");
     pages.textContent = `Pages: ${book.pages}`;
 
-    let button = document.createElement("button");
-    button.textContent = book.read;
+    // Create and style the "Read" button
+    let readButton = document.createElement("button");
+    readButton.classList.add("read-button");
+    readButton.textContent = book.read ? "Read" : "Not Read";
+    readButton.addEventListener("click", () => {
+      toggleReadStatus(book.id); // Pass the book's ID
+    });
 
-    // Append the elements to the card
+    // Create and style the delete button
+    let deleteButton = document.createElement("button");
+    deleteButton.classList.add("delete-button");
+    deleteButton.textContent = "Delete";
+    deleteButton.addEventListener("click", () => {
+      deleteBook(book.id); // Pass the book's ID
+    });
+
+    // Create a flex container for buttons
+    let buttonContainer = document.createElement("div");
+    buttonContainer.classList.add("button-container");
+    buttonContainer.appendChild(readButton);
+    buttonContainer.appendChild(deleteButton);
+
+    // Append elements to the card
     card.appendChild(title);
     card.appendChild(author);
     card.appendChild(pages);
-    card.appendChild(button);
-
+    card.appendChild(buttonContainer);
     // Append the card to the container
     cardContainer.appendChild(card);
   });
+}
+
+// Function to add a book to the library
+function addBookToLibrary(title, author, pages, read) {
+  let newBook = new Book(title, author, pages, read, ++idCounter);
+  myLibrary.unshift(newBook);
+}
+
+// Select the correct container
+let cardContainer = document.querySelector(".cards-container");
+
+// function to delte button
+function deleteBook(id) {
+  myLibrary = myLibrary.filter((book) => book.id !== id);
+  displayBook(); // Refresh the display after deletion
 }
 
 // get the dialog buttons
@@ -90,3 +123,5 @@ submitButton.addEventListener("click", (e) => {
   addBookDialogue.close();
   displayBook();
 });
+
+displayBook(); // Call displayBook to show initial books

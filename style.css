@@ -129,7 +129,7 @@ input[type="number"] {
   margin: 10px 0;
 }
 
-.card button {
+button {
   margin-top: 10px;
   padding: 8px 10px;
   background: #6c63ff;
@@ -142,6 +142,49 @@ input[type="number"] {
 
 .card button:hover {
   background: #4a44c7;
+}
+
+/* Flex container for buttons */
+.button-container {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px; 
+}
+
+.read-button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.read-button.not-read {
+  background-color: #f44336;
+}
+
+.read-button:hover {
+  background-color: #45a049;
+}
+
+.delete-button {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.delete-button:hover {
+  background-color: #d32f2f;
 }
 
 /* Responsive Design */
