@@ -94,7 +94,7 @@ const addBookDialogue = document.getElementById("addBookDialogue");
 const cancelButton = document.getElementById("cancel");
 const submitButton = document.getElementById("submit");
 
-// show dialoge
+// show dialog
 showDialogButton.addEventListener("click", () => {
   addBookDialogue.showModal(); //
 });
@@ -106,23 +106,28 @@ cancelButton.addEventListener("click", () => {
 
 // submit form
 submitButton.addEventListener("click", (e) => {
-  e.preventDefault();
-  // Get form data
-  const title = document.getElementById("title").value.trim();
-  const author = document.getElementById("author").value.trim();
-  const pages = document.getElementById("pages").value.trim();
-  const read = document.getElementById("read").checked; // If using a checkbox for read status
-  // add to the Library
-  addBookToLibrary(title, author, pages, read);
+  const form = document.getElementById("addBookForm");
+  if (!form.checkValidity()) {
+    e.preventDefault(); // Prevent submission if fields are invalid
+    alert('Please fill in all required fields!');
+  } else {
+    // Get form data
+    const title = document.getElementById("title").value.trim();
+    const author = document.getElementById("author").value.trim();
+    const pages = document.getElementById("pages").value.trim();
+    const read = document.getElementById("read").checked; // If using a checkbox for read status
+    // add to the Library
+    addBookToLibrary(title, author, pages, read);
 
-  // Clear the form
-  document.getElementById("title").value = "";
-  document.getElementById("author").value = "";
-  document.getElementById("pages").value = "";
-  document.getElementById("read").checked = false;
+    // Clear the form
+    document.getElementById("title").value = "";
+    document.getElementById("author").value = "";
+    document.getElementById("pages").value = "";
+    document.getElementById("read").checked = false;
 
-  addBookDialogue.close();
-  displayBook();
+    addBookDialogue.close();
+    displayBook();
+  }
 });
 
 displayBook(); // Call displayBook to show initial books
